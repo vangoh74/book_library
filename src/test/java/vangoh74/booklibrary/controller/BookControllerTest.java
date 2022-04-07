@@ -35,6 +35,7 @@ class BookControllerTest {
         //GIVEN
         Book book1 = new Book("1234", "Testtitle");
         bookRepository.addBook(book1);
+        bookRepository.addBook(new Book("12", "Testtitle 2"));
 
         //WHEN
         List<Book> actual = testClient.get()
@@ -45,7 +46,7 @@ class BookControllerTest {
                 .returnResult()
                 .getResponseBody();
         // THEN
-        List<Book> expected = List.of(new Book("1234", "Testtitle"));
+        List<Book> expected = List.of(new Book("12", "Testtitle 2"), new Book("1234", "Testtitle"));
         assertEquals(expected, actual);
     }
     @Test
@@ -65,5 +66,22 @@ class BookControllerTest {
         //THEN
         Book expected = new Book("1234", "test-Title");
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void gebBookByISBN_whenInvalidIsbn_thenThrowException() {
+        // GIVEN
+        Book book = new Book("12", "test-Title");
+
+        //WHEN
+        testClient.get()
+                .uri("http://localhost:" + port + "/book")
+                .exchange()
+                .expectStatus().is5xxServerError();
+        // THEN
+    }
+
+    @Test
+    void deleteBook() {
     }
 }

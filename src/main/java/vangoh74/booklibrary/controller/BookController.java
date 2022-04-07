@@ -8,7 +8,7 @@ import vangoh74.booklibrary.service.BookService;
 import java.util.List;
 
 @RestController
-@RequestMapping("book") //http:localhost:8080/book
+@RequestMapping("book") //http://localhost:8080/book
 public class BookController {
     private final BookService bookService;
 

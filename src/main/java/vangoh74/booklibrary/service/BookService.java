@@ -28,5 +28,4 @@ public class BookService {
     public Book deleteBook(String isbn) {
         return bookRepo.deleteBook(isbn);
     }
-
 }

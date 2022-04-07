@@ -12,7 +12,8 @@ public class BookRepository {
     Map<String, Book> books = new HashMap<>();
 
     public Book addBook(Book book) {
-        return books.put(book.getIsbn(), book);
+        books.put(book.getIsbn(), book);
+        return book;
     }
 
     public List<Book> getAllBooks() {
@@ -29,5 +30,9 @@ public class BookRepository {
 
     public Book deleteBook(String isbn) {
         return books.remove(isbn);
+    }
+
+    public void deleteAll() {
+        books.clear();
     }
 }

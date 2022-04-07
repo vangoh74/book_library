@@ -5,6 +5,7 @@ import vangoh74.booklibrary.model.Book;
 import vangoh74.booklibrary.repository.BookRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,7 +52,7 @@ class BookServiceTest {
     @Test
     void getBookByISBN_whenISBN3426633094_thenReturnBookWithISBN3426633094() {
         // GIVEN
-        when(bookRepo.getBookByISBN("3426633094")).thenReturn(new Book("3426633094", "Die Therapie"));
+        when(bookRepo.getBookByISBN("3426633094")).thenReturn(Optional.ofNullable(new Book("3426633094", "Die Therapie")));
 
         //WHEN
         Book actual = bookService.getBookByISBN("3426633094");
@@ -66,7 +67,7 @@ class BookServiceTest {
     @Test
     void deleteBook() {
         // GIVEN
-        when(bookRepo.deleteBook("1244214325")).thenReturn(new Book("1244214325", "Vom Winde verweht"));
+        when(bookRepo.deleteBook("1244214325")).thenReturn(Optional.ofNullable(new Book("1244214325", "Vom Winde verweht")));
 
         // WHEN
         Book actual = bookService.deleteBook("1244214325");

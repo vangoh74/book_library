@@ -2,10 +2,7 @@ package vangoh74.booklibrary.repository;
 import org.springframework.stereotype.Service;
 import vangoh74.booklibrary.model.Book;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BookRepository {
@@ -24,12 +21,14 @@ public class BookRepository {
         return arrayList;
     }
 
-    public Book getBookByISBN(String isbn) {
-        return books.get(isbn);
+    public Optional<Book> getBookByISBN(String isbn) {
+        Optional<Book> bookOptional = Optional.ofNullable(books.get(isbn));
+        return bookOptional;
     }
 
-    public Book deleteBook(String isbn) {
-        return books.remove(isbn);
+    public Optional<Book> deleteBook(String isbn) {
+        Optional<Book> bookOptional = Optional.ofNullable(books.remove(isbn));
+        return bookOptional;
     }
 
     public void deleteAll() {

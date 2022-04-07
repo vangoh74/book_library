@@ -11,11 +11,15 @@ import java.util.Map;
 public class BookRepository {
     Map<String, Book> books = new HashMap<>();
 
+    // Kein Optional wegen put() ?
     public Book addBook(Book book) {
         books.put(book.getIsbn(), book);
         return book;
     }
 
+    /*  Kein Optional wegen List: Listen sorgen dafür,
+        dass man kein NULL zurück bekommt.
+        Es kommt eher eine leere Liste zurück */
     public List<Book> getAllBooks() {
         List<Book> arrayList = new ArrayList<>();
         for (String key : books.keySet()) {
@@ -23,6 +27,7 @@ public class BookRepository {
         }
         return arrayList;
     }
+
 
     public Book getBookByISBN(String isbn) {
         return books.get(isbn);
